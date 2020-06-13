@@ -1,0 +1,26 @@
+<div id="modal" class = "hide">
+    <div class="content">
+        <div class="header">
+            <h1>Pontos de Coleta</h1>
+            <a href="#">Fechar</a>
+        </div>
+        <form action="/search"> <!--Uma tag pode receber com atributo mais de uma class. Separar por espaços.-->
+            <label for="search">Cidade</label>
+            <div class="search field"> 
+                <!--
+                    <input type="text" name = "search" placeholder="Pesquise por cidade">
+
+                -->
+                <select name="uf" required>
+                    <option value="">Selecione o Estado</option>
+                    <option value="todos">Todos os estados</option>
+                    
+                    <input type="hidden" name="state"> <!--o type hidden deixa o input invisível-->
+                </select>
+                <button>
+                    <img src="/icones/search.svg" alt="Buscar">
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

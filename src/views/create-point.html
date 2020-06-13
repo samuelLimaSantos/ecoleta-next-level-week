@@ -1,0 +1,152 @@
+{% extends "partials/layout.html" %}
+{% set pageId = "page-create-point" %}
+
+{% block title %}
+        <title>Criar um ponto de Coleta</title>
+{% endblock title %}
+        
+{% block styles %}
+        <link rel="stylesheet" href="/styles/create-point.css">    
+        <link rel="stylesheet" href="/styles/modal.css">    
+
+{% endblock styles %}
+        
+
+{% block content %}
+{% include "partials/page-header.html" %} <!-- Com o include você informa para o HTML o que quer incluir naquela parte do código. Sintaxe -->
+<form action="/savepoint" method = "POST" id = "form"> <!--O action diz para a rota que o post irá levar, enquanto o method define se o método vai ser post ou get  action="/savepoint"-->
+                <h1>Cadastro do ponto de coleta</h1>
+
+                <fieldset> <!--A tag fieldset serve para criar um bloco para um form-->
+                    <legend> <!--A tag legend serve para criar um título menor para o bloco do form-->
+                        <h2>
+                            Dados da entidade
+                        </h2>    
+                    </legend>
+                    <div class="field-group">
+                        <div class="field">
+                            <label for="name">
+                                Nome da entidade:
+                            </label>
+                            <input type="text" name = "name" required>
+                        </div>
+                        <div class="field">
+                            <label for="cnpj">
+                                CNPJ:
+                            </label>
+                            <input placeholder="Digite apenas os números " type="text"  name = "cnpj" required
+                            onfocus=" retirarFormatacao(this)" onblur="formatarCampo(this)"  maxlength="14" minlength="14"
+                            >
+                            <input type="hidden" name="cnpjValor">
+                        </div>
+
+                        
+                    </div>
+                   
+                    <div class="field">
+                        <label for="image">
+                            Imagem da entidade:
+                        </label>
+                        <input placeholder="http://" type="url" name = "image" required>
+                    </div>
+
+                    <div class="field-group">
+                        <div class="field">
+                            <label for="address">
+                                Endereço:
+                            </label>
+                            <input type="text" name = 'address' required>
+                        </div>
+                        <div class="field">
+                            <label for="address2">
+                                Número/Complemento:
+                            </label>
+                            <input type="text" name = 'address2' required>
+                        </div>
+                    </div>
+
+                    <div class="field-group">
+                        <div class="field">
+                            <label for="state">
+                                Estado:
+                            </label>
+                            <select name="uf" required>
+                                <option value="">Selecione o Estado</option>
+                                
+                                <input type="hidden" name="state"> <!--o type hidden deixa o input invisível-->
+                            </select>
+                        </div>
+                        <div class="field">
+                            <label for="city">
+                                Cidade:
+                            </label>
+                            <select name="city" id="" disabled required > <!--O atributo disabled bloqueia a utilização do select-->
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>
+                        <h2>Itens de coleta</h2>
+                        <span>Selecione um ou mais itens abaixo</span>
+                    </legend>
+
+                    <div class="items-grid">
+                        <li data-id = "Lâmpadas"> <!--Pesquisar dataset-->
+                            <img src="/icones/lampadas.svg" alt="Ícone de Lâmpadas">
+                            <span>Lâmpadas</span>
+                        </li>
+
+                        <li data-id = "Pilhas e Baterias"> <!--Pesquisar dataset-->
+                            <img src="/icones/baterias.svg" alt="Ícone de Baterias">
+                            <span>Pilhas e Baterias</span>
+                        </li>
+
+                        <li data-id = "Papeis e Papelão"> <!--Pesquisar dataset-->
+                            <img src="/icones/papeis-papelao.svg" alt="Ícone de Papeis e Papelão">
+                            <span>Papeis e Papelão</span>
+                        </li>
+
+                        <li data-id = "Resíduos Eletrônicos"> <!--Pesquisar dataset-->
+                            <img src="/icones/eletronicos.svg" alt="Ícone de Resíduos Eletrônicos">
+                            <span>Resíduos Eletrônicos</span>
+                        </li>
+
+                        <li data-id = "Resíduos Orgânicos"> <!--Pesquisar dataset-->
+                            <img src="/icones/organicos.svg" alt="Ícone de Resíduos Orgânicos">
+                            <span>Resíduos Orgânicos</span>
+                        </li>
+
+                        <li data-id = "Óleo de Cozinha"> <!--Pesquisar dataset-->
+                            <img src="/icones/oleo.svg" alt="Ícone de Óleo de Cozinha">
+                            <span>Óleo de Cozinha</span>
+                        </li>
+                    </div>
+
+                    <input type="hidden" name="items">
+                </fieldset>
+
+                <button type="button"  onclick="validacao()">Cadastrar ponto de coleta</button> <!--O botão do tipo submit envia através da query os dados do form-->
+</form>
+    
+{% endblock content %}
+
+
+{% block modal %}
+    {% if saved %}
+        {% include "partials/point-created.html"%}
+    {% endif %}
+
+    {% if error %}
+        {% include "partials/erro.html"%}
+    {% endif %}
+{% endblock modal%}
+
+
+{% block scripts %}
+            <script src="/scripts/create.point.js"></script>
+            <script src="/scripts/validacaoCNPJ.js"></script>
+
+{% endblock scripts %}

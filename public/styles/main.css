@@ -1,0 +1,35 @@
+* {
+    margin: 0; /*Retira a margem de padrão do navegador*/
+    padding: 0; /*Retira o padding de padrão do navegador*/
+    box-sizing: border-box; /*Todo o padding que entrar não irá afetar o tamanho da caixa
+    Isso acontece pois o referencial adotado passa a ser a borda da caixa.*/
+    
+
+}
+
+
+:root {
+    /*O pseudo-seletor :root é a representação da tag HTML com mais especificidade*/
+    --title-color: #322153; /*Variáveis podem ser utilizadas no CSS. Sintaxe: --cor-principal: black;*/
+    --primary-color: #34cb79;
+}
+
+html {
+    font-family: 'Roboto', sans-serif; /*Fonte importada do google ==> No site fornece a sintexe de import e de set*/
+}
+
+body {
+    background: #f0f0f5; /*Define uma cor de background no body*/
+    -webkit-font-smoothing: antialiased; /*Deixar o texto com menos serrilhado. Mais agradável.*/
+}
+
+a {
+    text-decoration: none; /*Retira a decoração do link*/
+
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--title-color); /*Para utilizar a variável definida no início a sintaxe é var(nome)*/
+    font-family: 'Ubuntu', sans-serif; /*Importa a fonte Unbutu do google*/
+}
+

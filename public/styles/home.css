@@ -1,0 +1,103 @@
+#page-home {
+    height: 100vh; /*A unidade de medida view height retorna um resultado de acordo com o tamanho da view da tela*/
+    background: url('../icones/home-background.svg') no-repeat; /*Ao setar o background o comando no repeat serve para só mostrar a imagem uma vez, independente do tamanho da página*/
+    background-position: 40vw bottom;
+}
+
+#page-home .content {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column; /*Define a direção do flex para o formato de coluna*/
+    
+
+}
+
+#page-home header {
+    margin-top: 48px;
+    display: flex;
+    align-items: center; /*Posiciona os flex itens de acordo com o seu eixo horizontal*/
+    justify-content:space-between; /*Posiciona os itens flex dentro do container de acordo com a sua direção*/
+}
+
+#page-home img:hover {
+    cursor: pointer;
+}
+
+#page-home header a {
+    display: flex;
+    color: var(--title-color);
+    font-weight: 700;
+}
+
+#page-home header a span {
+    margin-right: 16px;
+    display: flex;
+    background-image: url("../icones/log-in.svg");
+    width: 20px;
+    height: 20px;
+}
+
+
+#page-home main {
+    max-width: 560px;
+    flex: 1; /*Os flex itens tentarão ocupar o espaço todo do container*/
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+#page-home main h1 {
+    font-size: 54px;
+}
+
+#page-home main p {
+    font-size: 24px;
+    line-height: 38px;
+    margin-top: 24px;
+}
+
+#page-home main a {
+    width: 100%;
+    max-width: 360px;
+    background: var(--primary-color);
+    height: 72px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    margin-top: 40px;
+    transition: 400ms;
+    
+}
+
+#page-home main a:hover {
+    background: #2fb86e;
+}
+
+#page-home main a span {
+    width: 72px;
+    height: 72px;
+    border-top-left-radius: 9px;
+    border-bottom-left-radius: 9px;
+    background: rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#page-home main a span::after {
+    /*O ::after cria uma pseudo classe responsável por adicionar informação html pelo CSS*/
+    content: ""; /*Aqui fica o conteúdo que você quer adicionar*/
+    background-image: url("/icones/search.svg");
+    width: 20px;
+    height: 20px;
+}
+
+#page-home main a strong {
+    flex: 1;
+    color: white;
+    text-align: center;
+}
