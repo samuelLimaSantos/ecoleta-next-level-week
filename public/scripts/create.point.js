@@ -1,6 +1,6 @@
 function promissesUfandCities(url, caixa) {
     //A função recebe como parâmetro a url e o elemento para ser posicionado a informação
-    fetch(url) // O fetch() faz a requisição da promisse. Passa como parâmetro a url
+    return fetch(url) // O fetch() faz a requisição da promisse. Passa como parâmetro a url
         .then((res) => {
             // .then mostra o que fazer quando a requisição é um sucesso
             // Passa uma função anônima. Sintaxe (parametro) => {}
@@ -25,18 +25,18 @@ function valueCidade(options) {
 }
 
 
-function populateUFs() {
+async function populateUFs() {
     const ufSelect = document.querySelector("select[name = uf]"); // seleciona o select com name uf
     const url = "https://servicodados.ibge.gov.br/api/v1/localidades/estados"; //url da API do IBGE para pegar a UF dos estados
 
-    promissesUfandCities(url, ufSelect); // Chama a função para gerar a lista das cidades (passa como parâmetro o select e a url)
+    await promissesUfandCities(url, ufSelect); // Chama a função para gerar a lista das cidades (passa como parâmetro o select e a url)
 }
 
 
 populateUFs(); // Chama a função para selecionar o select do UF
 
 
-function getCities(event) {
+async function getCities(event) {
     const city = document.querySelector("select[name = city]"); // Seleciona o select das cidades
     city.disabled = false; // Disbilita a opção que bloqueia o segundo select (Tava bloqueado pelo HTML)
     city.innerHTML = "<option value></option>"; // Limpa a caixa das cidades antes de preencher
@@ -48,9 +48,9 @@ function getCities(event) {
     const indexOfSelectedState = event.target.selectedIndex; // Retorna o indíce do option dentro do select selecionado
     stateInput.value = event.target.options[indexOfSelectedState].text; // Atribui no value do input escondido o texto presente no option selecionado
 
-    promissesUfandCities(url, city); // chama a função da requisição passando como parâmetro a url e o select das cidades
-    
-    setTimeout(valueCidade, 1000, city); // Chama a função para substituir o value após 1 segundo
+    await promissesUfandCities(url, city); // chama a função da requisição passando como parâmetro a url e o select das cidades
+    valueCidade(city);
+    //setTimeout(valueCidade, 1000, city); // Chama a função para substituir o value após 1 segundo
     // Para passar um função com parâmetros no setTime out vc tem que passá-los após o tempo.
 
     
